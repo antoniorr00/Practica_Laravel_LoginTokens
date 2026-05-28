@@ -12,20 +12,17 @@ use Tests\TestCase;
 /**
  * Tests Feature de la práctica "Login por Tokens".
  *
- * Cada test cubre uno (o más) de los 5 apartados del enunciado:
- *
- *   - Apartado 1 (login): login_ok, login_credenciales_invalidas, login_ya_autenticado.
- *   - Apartado 2 (middleware propio): ruta_protegida_sin_token_devuelve_401,
- *     ruta_protegida_con_token_invalido_devuelve_401.
- *   - Apartado 3 (/me protegido): me_devuelve_datos_del_usuario.
- *   - Apartado 4 (logout): logout_invalida_el_token.
- *   - Apartado 5 (rutas públicas): login_es_publico, register_es_publico.
+ * (login): login_ok, login_credenciales_invalidas, login_ya_autenticado.
+ * (middleware propio): ruta_protegida_sin_token_devuelve_401,
+ * ruta_protegida_con_token_invalido_devuelve_401.
+ * (/me protegido): me_devuelve_datos_del_usuario.
+ * logout_invalida_el_token.
+ * login_es_publico, register_es_publico.
  */
 class AuthTest extends TestCase
 {
     use RefreshDatabase;
 
-    // ---------------------------------------------------------------- Apartado 1
     public function test_login_devuelve_token_con_credenciales_validas(): void
     {
         $user = User::factory()->create([
@@ -86,7 +83,7 @@ class AuthTest extends TestCase
         $this->assertDatabaseCount('personal_access_tokens', 1);
     }
 
-    // ---------------------------------------------------------------- Apartado 2
+ 
     public function test_ruta_protegida_sin_token_devuelve_401(): void
     {
         $this->getJson('/api/me')->assertUnauthorized();
@@ -106,7 +103,6 @@ class AuthTest extends TestCase
             ->assertUnauthorized();
     }
 
-    // ---------------------------------------------------------------- Apartado 3
     public function test_me_devuelve_los_datos_del_usuario_autenticado(): void
     {
         $user = User::factory()->create(['name' => 'pepito']);
@@ -119,7 +115,7 @@ class AuthTest extends TestCase
             ->assertJsonPath('user.name', 'pepito');
     }
 
-    // ---------------------------------------------------------------- Apartado 4
+
     public function test_logout_invalida_el_token(): void
     {
         $user = User::factory()->create();
@@ -137,7 +133,7 @@ class AuthTest extends TestCase
             ->assertUnauthorized();
     }
 
-    // ---------------------------------------------------------------- Apartado 5
+
     public function test_register_es_publico_y_devuelve_token(): void
     {
         $response = $this->postJson('/api/register', [

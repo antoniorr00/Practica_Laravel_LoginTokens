@@ -13,14 +13,12 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Middleware propio de autenticación por token.
  *
- * Cumple con el apartado 2 del enunciado:
  *   - NO usa el middleware integrado en Sanctum (auth:sanctum).
  *   - NO usa el guard 'sanctum' de Laravel.
  *   - NO usa el helper PersonalAccessToken::findToken() de Sanctum.
  *
  * Lo único que tomamos prestado de Sanctum es su TABLA (personal_access_tokens)
- * porque el enunciado obliga a usar Sanctum para emitir tokens. La lógica de
- * autenticación —parseo del token, hashing y consulta— está hecha a mano.
+ * La lógica de autenticación —parseo del token, hashing y consulta— está hecha a mano.
  *
  * Formato del token Sanctum: "<id>|<plainText>"
  *   - <id>        → id de la fila en personal_access_tokens

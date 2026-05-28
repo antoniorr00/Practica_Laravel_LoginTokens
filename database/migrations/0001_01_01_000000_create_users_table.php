@@ -7,13 +7,13 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * Run las migraciones.
      */
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            // El enunciado obliga a autenticarse por nombre, así que debe ser único
+            // Obligatorio autenticarse por nombre -> único
             // para que las credenciales identifiquen un único usuario.
             $table->string('name')->unique();
             $table->string('email')->nullable()->unique();
@@ -40,7 +40,7 @@ return new class extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * Reverse las migraciones.
      */
     public function down(): void
     {

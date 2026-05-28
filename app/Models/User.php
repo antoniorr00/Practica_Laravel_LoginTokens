@@ -27,7 +27,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * Campos ocultos al serializar a JSON (nunca exponer la contraseña).
+     * Campos ocultos al serializar a JSON (no exponer la contraseña).
      *
      * @var list<string>
      */

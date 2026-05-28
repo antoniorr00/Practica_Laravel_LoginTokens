@@ -8,7 +8,7 @@ use Tests\TestCase;
 class ExampleTest extends TestCase
 {
     /**
-     * A basic test example.
+     * un test básico para comprobar que la aplicación funciona
      */
     public function test_the_application_returns_a_successful_response(): void
     {

@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\Response;
  *
  * Cuatro responsabilidades, una por método:
  *   - login    → autentica por nombre + contraseña y emite un token Sanctum.
- *   - register → da de alta un nuevo usuario (ruta pública).
+ *   - register → nuevo usuario (ruta pública).
  *   - me       → devuelve los datos del usuario autenticado (ruta protegida).
  *   - logout   → invalida el token actual (ruta protegida).
  *
@@ -29,11 +29,9 @@ use Symfony\Component\HttpFoundation\Response;
 class AuthController extends Controller
 {
     /**
-     * Apartado 1 del enunciado.
-     *
      * Autentica al usuario por nombre y contraseña. Si la petición YA viene con
      * un token Bearer válido, devolvemos una respuesta DISTINTA ("ya autenticado")
-     * sin emitir un token nuevo, tal y como pide el enunciado.
+     * sin emitir un token nuevo.
      */
     public function login(LoginRequest $request): JsonResponse
     {
@@ -70,7 +68,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Ruta pública adicional (apartado 5): registro de usuarios.
+     * Ruta pública adicional: registro de usuarios.
      *
      * Devuelve también un token para que el usuario pueda usar la API
      * inmediatamente después de registrarse.
@@ -94,7 +92,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Apartado 3: muestra los datos del usuario autenticado.
+     * Muestra los datos del usuario autenticado.
      *
      * El middleware EnsureTokenIsValid ya ha resuelto y validado al usuario,
      * por lo que aquí basta con leer el atributo que él ha inyectado en la request.
@@ -110,7 +108,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Apartado 4: cierra sesión invalidando el token actual.
+     * Cierra sesión invalidando el token actual.
      *
      * Borramos físicamente la fila de personal_access_tokens correspondiente
      * al token con el que se ha hecho esta petición. A partir de aquí, ese token

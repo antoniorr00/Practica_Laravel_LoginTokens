@@ -24,7 +24,7 @@ class LoginRequest extends FormRequest
     }
 
     /**
-     * Reglas: el enunciado pide login por NOMBRE y CONTRASEÑA.
+     * Login por NOMBRE y CONTRASEÑA.
      *
      * @return array<string, array<int, string>>
      */

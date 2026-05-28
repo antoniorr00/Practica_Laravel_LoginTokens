@@ -9,7 +9,6 @@ use Illuminate\Foundation\Http\FormRequest;
 /**
  * Validación del registro de usuarios.
  *
- * Pedimos sólo lo mínimo que exige el modelo de autenticación de la práctica:
  * nombre (único) y contraseña. El email queda opcional.
  */
 class RegisterRequest extends FormRequest
@@ -27,7 +26,7 @@ class RegisterRequest extends FormRequest
         return [
             // 'name' es la credencial de acceso → debe ser único.
             'name' => ['required', 'string', 'min:3', 'max:255', 'unique:users,name'],
-            // Mínimo 8 caracteres es una buena práctica de seguridad mínima.
+            // Mínimo 8 caracteres para seguridad mínima.
             'password' => ['required', 'string', 'min:8'],
         ];
     }
